@@ -1,13 +1,10 @@
 import express from "express";
+import {home, registration} from "../controllers/auth-controller.js"
 
 const router = express.Router();
 
-router.route("/").get((req, res) => {
-   res.status(200).send("Nishant Talekar")
-})
+router.route("/").get(home);
 
-router.route("/registration").get((req,res)=> {
-    res.status(200).send("Registration Page");
+router.route("/registration").get(registration);
 
-})
 export default router
