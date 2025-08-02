@@ -9,8 +9,8 @@ export const home = (req, res) => {
 
 export const registration = (req, res) => {
     try {
-        res.status(200).send("Registration Page");
+        res.status(200).json(req.body);
     } catch (error) {
-        res.status(400).send("Page not found");
+        res.status(400).json({msg:"Page not found"});
     }
 }
