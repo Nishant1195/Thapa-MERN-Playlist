@@ -2,27 +2,27 @@ import { Type } from "lucide-react";
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    username:{
-        Type: String,
-        require:true
+    username: {
+        type: String,
+        required: true
     },
-    email:{
-        Type: String,
-        require:true
+    email: {
+        type: String,
+        required: true
     },
-    phoneno:{
-        Type: String,
-        require:true
+    phoneno: {
+        type: String,
+        required: true
     },
-    password:{
-        Type: String,
-        require:true
+    password: {
+        type: String,
+        required: true
     },
     isAdmin: {
-        Type:Boolean,
-        require:true
+        type: Boolean,
+        default: false
     }
-})
+});
 
 const User = new mongoose.model("User", userSchema);
 
