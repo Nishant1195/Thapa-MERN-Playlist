@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 
-const URI = "mongodb://127.0.0.1:27017/thapa_mern"
+dotenv.config();
+
+const URI = process.env.MONGODB_URI;
 
 const connectDB = async () => {
     try {
