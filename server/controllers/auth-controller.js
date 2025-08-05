@@ -1,4 +1,5 @@
-import User from "../model/user-model.js"
+import User from "../model/user-model.js";
+import generateToken from "../model/user-model.js"
 
 export const home = (req, res) => {
     try {
@@ -16,11 +17,11 @@ export const registration = async (req, res) => {
         const userExists = await User.findOne({email});
 
         if(userExists){
-            res.status(400).json({error: "user email already exists"})
+            return res.status(400).json({error: "user email already exists"})
         }
         
-        const result = User.create({username, email, phoneno, password})
-        res.status(201).json({result})
+        const result = await User.create({username, email, phoneno, password})
+        res.status(201).json({msg: "registration done", token: await result.generateToken(), userID: result._id.toString()});
 
     } catch (error) {
         console.log(error);

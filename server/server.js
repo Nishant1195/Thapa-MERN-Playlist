@@ -14,7 +14,7 @@ app.use(express.json());
 
 app.use("/api/auth", router);
 
-connectDB(). then(() => {
+connectDB().then(() => {
     app.listen(PORT, () => {
         console.log(`Listening to Port: ${PORT}`)
     })
