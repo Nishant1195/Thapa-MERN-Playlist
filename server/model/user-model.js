@@ -1,6 +1,7 @@
 import { Type } from "lucide-react";
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -24,6 +25,22 @@ const userSchema = new mongoose.Schema({
         default: false
     }
 });
+
+userSchema.pre("save", async function(next) {
+    const user = this;
+    if(!user.isModified('password')){
+        next();
+    }
+
+    try {
+        const saltRound = await bcrypt.genSalt(10);
+        const hash_password = await bcrypt.hash(user.password, saltRound);
+        user.password = hash_password;
+        
+    } catch (error) {
+        next(error);
+    }
+})
 
 userSchema.methods.generateToken = async function() {
     try {

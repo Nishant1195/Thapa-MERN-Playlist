@@ -21,7 +21,7 @@ export const registration = async (req, res) => {
         }
         
         const result = await User.create({username, email, phoneno, password})
-        res.status(201).json({msg: "registration done", token: await result.generateToken(), userID: result._id.toString()});
+        res.status(201).json({msg: result, token: await result.generateToken(), userID: result._id.toString()});
 
     } catch (error) {
         console.log(error);
